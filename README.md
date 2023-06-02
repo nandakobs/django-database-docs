@@ -1,6 +1,6 @@
 # Django Database Docs
 
-This repository provides a convenient solution to generate a PlantUML (.puml) diagram representing your Django project's database schema and create markdown files containing the summary and details of all its tables.
+This repository provides a convenient solution to generate a PlantUML (.puml) diagram representing your Django project's database schema and create a markdown file containing the summary and details of all its tables.
 
 With just two simple commands, you can visualize your Django project's database structure and generate comprehensive documentation in markdown format.
 
@@ -41,7 +41,7 @@ The script consists of two parts that work together to generate a PostgreSQL sch
 
 ### Script 1: Convert Fields and Generate .puml Diagram
 
-The `models_to_puml.py` script analyzes all the tables in the project and converts the field types to be compatible with PostgreSQL. Additionally, it generates a diagram in PlantUML (.puml) format.
+The `models_to_puml.py` script analyzes all the tables in the project and converts the field types to be compatible with PostgreSQL. And then, it generates a diagram in PlantUML (.puml) format.
 
 1. The script scans the project's tables and converts the field types to PostgreSQL-compatible types.
 2. It writes the converted field types and relationships (FK and M2M) to a .puml file, creating a diagram that represents the database schema.
