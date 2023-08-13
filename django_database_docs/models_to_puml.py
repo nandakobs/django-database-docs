@@ -1,4 +1,5 @@
 import os
+import sys
 
 import django
 from django.apps import apps
@@ -11,11 +12,21 @@ from django.db.models import (
 )
 
 
+def get_project_path():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    django_dir = os.path.dirname(current_dir)
+    project_dir = os.path.dirname(django_dir)
+
+    return project_dir
+
+
 def get_project_name():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     project_name = os.path.basename(os.path.dirname(current_dir))
     return project_name
 
+
+sys.path.append(get_project_path())
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', f'{get_project_name()}.settings')
 django.setup()
@@ -24,8 +35,8 @@ models = apps.get_models()
 
 def make_output_file_editable(file_path):
     """
-    In some projects the generated file is created with the read-only permission,
-    this method makes sure the output file is editable.
+    In some projects, the generated file is created with the read-only permission.
+    This method makes sure the output file is editable.
     """
     permissions = 0o777  # 777 (octal) means read, write, and execute permissions for the owner, group, and others
     os.chmod(file_path, permissions)
