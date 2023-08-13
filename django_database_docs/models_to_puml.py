@@ -8,7 +8,7 @@ from django.db.models import (
     DateField, DateTimeField, DecimalField, DurationField, EmailField, FloatField, IntegerField,
     IPAddressField, GenericIPAddressField, NullBooleanField, PositiveIntegerField,
     PositiveSmallIntegerField, SlugField, SmallIntegerField, TextField,
-    TimeField, URLField, UUIDField, Field, FileField, ForeignKey, ImageField, OneToOneField, ManyToManyField
+    TimeField, URLField, UUIDField, Field, FileField, ForeignKey, ImageField, OneToOneField, ManyToManyField, JSONField,
 )
 
 
@@ -70,7 +70,8 @@ def django_field_to_postgres(field) -> str:
         TimeField: "time",
         URLField: "varchar(200)",
         UUIDField: "uuid",
-        OneToOneField: "uuid",  # Assumes uuid as primary key
+        JSONField: "jsonb",
+        OneToOneField: "uuid",  # Assumes uuid as a primary key
     }
 
     return mapping.get(type(field), "undefined")
